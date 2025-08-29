@@ -1,0 +1,11 @@
+# Simplified config for AWS Bedrock Knowledge Bases backend
+aws:
+  region: "us-east-1"                  # ENV: AWS_DEFAULT_REGION
+  knowledge_base_id: "kb-xxxxxxxx"     # ENV: BEDROCK_KB_ID
+  model_arn: "arn:aws:bedrock:us-east-1::foundation-model/anthropic.claude-sonnet-4-20250514-v1:0"  # ENV: BEDROCK_MODEL_ARN
+  max_tokens: 800                      # ENV: BEDROCK_MAX_TOKENS
+  temperature: 0.2                     # ENV: BEDROCK_TEMPERATURE
+  top_p: 0.9                           # ENV: BEDROCK_TOP_P
+
+ui:
+  welcome_message: "Ready. Ask me about your knowledge base."

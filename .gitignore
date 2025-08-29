@@ -1,0 +1,13 @@
+/.chainlit
+/.env
+/.env.example
+/.github
+/.venv
+/data/qdrant/
+/data/
+# Python bytecode files
+__pycache__/
+*.py[cod]
+*$py.class
+*.sqlite
+*.db

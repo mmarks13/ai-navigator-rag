@@ -14,7 +14,7 @@ RUN chmod +x /app/start.sh
 # Basic env
 ENV PORT=7860
 ENV CHAINLIT_APP_ROOT=/tmp
-ENV AWS_DEFAULT_REGION=us-east-1
+ENV AWS_DEFAULT_REGION=us-west-1
 
 EXPOSE 7860
 CMD ["/app/start.sh"]

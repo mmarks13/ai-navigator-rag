@@ -2,6 +2,7 @@ import os, sys
 import chainlit as cl
 from pathlib import Path
 from dotenv import load_dotenv
+from typing import Any
 
 # Ensure repo root is importable when Chainlit runs this as a script
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
@@ -13,6 +14,29 @@ load_dotenv(override=True)
 
 CFG_PATH = os.getenv("APP_CONFIG", "config/config.yaml")
 _RESOURCE: dict = {}
+
+# Expose a simple health endpoint for App Runner/containers.
+# We register it on Chainlit's underlying FastAPI app so `/healthz` returns 200.
+try:
+    from chainlit.server import app as _fastapi_app
+    from fastapi.routing import APIRoute
+
+    async def _healthz() -> Any:
+        return {"status": "ok"}
+
+    # Insert at the top to take precedence over Chainlit's catch-all route.
+    _fastapi_app.router.routes.insert(
+        0,
+        APIRoute(
+            path="/healthz",
+            endpoint=_healthz,
+            methods=["GET", "HEAD"],
+            name="healthz",
+            include_in_schema=False,
+        ),
+    )
+except Exception as e:  # pragma: no cover - best-effort registration
+    print(f"[init] ⚠️ Could not register /healthz endpoint: {e}")
 
 
 def _init_resources():

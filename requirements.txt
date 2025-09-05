@@ -1,3 +1,4 @@
 boto3==1.35.0
 chainlit==2.6.8
 python-dotenv==1.0.1
+PyYAML==6.0.2

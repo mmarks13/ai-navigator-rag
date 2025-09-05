@@ -6,6 +6,24 @@ build:
     - python3 -m pip install --upgrade pip setuptools wheel
     build:
     - python3 -m pip install --no-cache-dir -r requirements.txt
+    - echo "=== DIAGNOSTICS START ==="
+    - which python3
+    - python3 --version
+    - echo "Python path: $(python3 -c 'import sys; print(sys.executable)')"
+    - echo "Python paths: $(python3 -c 'import sys; print(sys.path)')"
+    - python3 -c "import chainlit; print('Chainlit version:', chainlit.__version__)"
+    - python3 -c "import chainlit; import os; print('Chainlit location:', os.path.dirname(chainlit.__file__))"
+    - echo "Looking for chainlit executable..."
+    - which chainlit || echo "chainlit not found in PATH"
+    - find /usr/local -name chainlit 2>/dev/null || echo "chainlit not found in /usr/local"
+    - find /home -name chainlit 2>/dev/null || echo "chainlit not found in /home"
+    - ls -la /usr/local/bin/ | grep chainlit || echo "no chainlit in /usr/local/bin"
+    - python3 -m pip show chainlit
+    - echo "Testing chainlit module import..."
+    - python3 -c "import chainlit.cli; print('chainlit.cli imported successfully')"
+    - echo "Testing chainlit module execution..."
+    - python3 -m chainlit --help || echo "chainlit module execution failed"
+    - echo "=== DIAGNOSTICS END ==="
 run:
   runtime-version: 3.11.13
   command: python3 -m chainlit run app/main.py --host 0.0.0.0 --port 8000

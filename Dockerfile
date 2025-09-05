@@ -1,5 +1,5 @@
 # ---- Base
-FROM python:3.12-slim
+FROM python:3.11-slim
 
 WORKDIR /app
 
@@ -12,9 +12,10 @@ COPY . .
 RUN chmod +x /app/start.sh
 
 # Basic env
-ENV PORT=7860
+ENV PORT=8000
 ENV CHAINLIT_APP_ROOT=/tmp
-ENV AWS_DEFAULT_REGION=us-west-1
+ENV AWS_DEFAULT_REGION=us-west-2
+ENV PYTHONUNBUFFERED=1
 
-EXPOSE 7860
+EXPOSE 8000
 CMD ["/app/start.sh"]

@@ -1,5 +1,5 @@
 version: 1.0
-runtime: python3
+runtime: python311
 build:
   commands:
     pre-build:
@@ -8,7 +8,7 @@ build:
     - python3 -m pip install --no-cache-dir -r requirements.txt
 run:
   runtime-version: 3.11.13
-  command: python3 -m chainlit run app/main.py --host 0.0.0.0 --port 8000
+  command: chainlit run app/main.py --host 0.0.0.0 --port 8000
   network:
     port: 8000
     env: PORT
@@ -17,3 +17,7 @@ run:
       value: "8000"
     - name: AWS_DEFAULT_REGION
       value: "us-west-2"
+    - name: PYTHONUNBUFFERED
+      value: "1"
+    - name: CHAINLIT_APP_ROOT
+      value: "/tmp"

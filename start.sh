@@ -2,7 +2,7 @@
 set -euo pipefail
 
 export PYTHONUNBUFFERED=1
-export PORT="${PORT:-7860}"
+export PORT="${PORT:-8000}"
 export CHAINLIT_APP_ROOT="${CHAINLIT_APP_ROOT:-/tmp}"
 
 echo "[startup] 🚀 Starting Chainlit app"

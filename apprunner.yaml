@@ -8,7 +8,7 @@ build:
     - python3 -m pip install --no-cache-dir -r requirements.txt
 run:
   runtime-version: 3.11.13
-  command: chainlit run app/main.py --host 0.0.0.0 --port 8000
+  command: python3 -m chainlit run app/main.py --host 0.0.0.0 --port 8000
   network:
     port: 8000
     env: PORT

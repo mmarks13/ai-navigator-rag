@@ -2,9 +2,10 @@ version: 1.0
 runtime: python311
 build:
   commands:
+    pre-build:
+      - python -m pip install --upgrade pip setuptools wheel
     build:
-  - python -m pip install --upgrade pip setuptools wheel
-  - python -m pip install --no-cache-dir -r requirements.txt
+      - python -m pip install --no-cache-dir -r requirements.txt
 run:
   runtime-version: 3.11.13
   command: chainlit run app/main.py --host 0.0.0.0 --port 8000

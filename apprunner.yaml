@@ -14,6 +14,5 @@ run:
   env:
     - name: PORT
       value: "8000"
-    - python --version && python -m pip --version
-    - python -m pip install --upgrade pip setuptools wheel
-    - python -m pip install --no-cache-dir -r requirements.txt
+    - name: AWS_DEFAULT_REGION
+      value: "us-west-2"

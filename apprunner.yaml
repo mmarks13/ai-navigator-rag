@@ -1,13 +1,12 @@
 version: 1.0
-runtime: python3
+runtime: python311
 build:
   commands:
     build:
-      - echo "Installing dependencies"
       - pip install --upgrade pip
       - pip install -r requirements.txt
 run:
-  runtime-version: 3.11
+  runtime-version: 3.11.13
   command: chainlit run app/main.py --host 0.0.0.0 --port 8000
   network:
     port: 8000
@@ -15,3 +14,5 @@ run:
   env:
     - name: PORT
       value: "8000"
+    - name: AWS_DEFAULT_REGION
+      value: "us-west-2"
